@@ -1,0 +1,53 @@
+@import "nullstyle.scss";
+
+@mixin width-height($w, $h) {
+  width: $w;
+  height: $h;
+}
+body {
+  background-color: #292727;
+}
+.content {
+  margin: 20px;
+}
+.circle {
+  background: #c0bcbc;
+  border-radius: 50%;
+  @include width-height(100px, 100px);
+  position: relative;
+  left: 0;
+  /*
+  animation-name: white_circle;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-delay: 1s;
+ 
+*/
+
+  animation: white_circle 2s ease-in-out infinite alternate 1s;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes white_circle {
+  0% {
+    left: 0px;
+  }
+  30% {
+    border-radius: 50%;
+  }
+  50% {
+    border-radius: 5%;
+    background: #c43a3a;
+  }
+  80% {
+    border-radius: 50%;
+  }
+  100% {
+    left: 500px;
+  }
+}
