@@ -1,53 +1,213 @@
 @import "nullstyle.scss";
 
-@mixin width-height($w, $h) {
-  width: $w;
-  height: $h;
-}
 body {
   background-color: #292727;
-}
-.content {
-  margin: 20px;
-}
-.circle {
-  background: #c0bcbc;
-  border-radius: 50%;
-  @include width-height(100px, 100px);
-  position: relative;
-  left: 0;
-  /*
-  animation-name: white_circle;
-  animation-duration: 2s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-  animation-delay: 1s;
- 
-*/
 
-  animation: white_circle 2s ease-in-out infinite alternate 1s;
+  .content {
+    margin: 20px;
+    display: flex;
+
+    .wraper {
+      margin-left: 20px;
+      background-color: #5a5555;
+    }
+
+    .block {
+      height: 100px;
+      width: 100px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.75s ease 0s;
+      &_s {
+        flex-direction: column;
+        align-content: center;
+      }
+
+      h2 {
+        color: #c9d3d2;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        text-transform: uppercase;
+        line-height: 18px;
+      }
+    }
+  }
+}
+
+.content__translate {
+  background-color: #407e64;
+  &:hover {
+    transform: translate(25%, 50%);
+  }
+}
+
+.content__scale {
+  background-color: #5d407e;
+  &:hover {
+    transform: scale(1.25, 0.75);
+  }
+}
+.content__scale__strange {
+  background-color: #3f2a57;
+  &:hover {
+    transform: scale(-1, 1);
+  }
+}
+
+.content__rotate {
+  background-color: #b45f19;
 
   &:hover {
-    animation-play-state: paused;
+    transform: rotate(90deg);
   }
 }
 
-@keyframes white_circle {
-  0% {
-    left: 0px;
+.content__skew {
+  background-color: #1c6422;
+
+  &:hover {
+    transform: skew(-20deg, -10deg);
   }
-  30% {
-    border-radius: 50%;
+}
+
+.content__matrix {
+  background-color: #1c4da8;
+  &:hover {
+    transform: matrix(0.75, 0, 0, 1.2, 20, 10);
   }
-  50% {
-    border-radius: 5%;
-    background: #c43a3a;
+}
+.content__tsr {
+  background-color: #a81c62;
+
+  &:hover {
+    transform: translate(0, 50%) scale(0.5) rotate(90deg);
   }
-  80% {
-    border-radius: 50%;
+}
+
+.content__t-origin {
+  background-color: #9aa81c;
+  transform-origin: center;
+
+  &:hover {
+    transform: rotate(90deg);
   }
-  100% {
-    left: 500px;
+  &:active {
+    transform: translate(-20px, 0) rotate(180deg);
   }
+}
+
+.wraper-3d {
+  margin-left: 20px;
+  height: 100px;
+  width: 100px;
+  perspective-origin: center;
+  perspective: 400px;
+  background-color: rgba(255, 255, 255, 0.2);
+  &_hurt {
+    background-image: url("../../source/img/pixil-frame-0.png");
+  }
+  &:hover {
+    .content__perspective {
+      transform-origin: left;
+      transform: perspective(400px) rotateY(85deg);
+    }
+  }
+}
+
+.content__perspective {
+  background-color: #a81c1c;
+
+  h2 {
+    font-size: 12px;
+    line-height: 13px;
+  }
+}
+
+.content__translate-3d {
+  background-color: #1ca8a1;
+  &:hover {
+    transform: translate3d(20px, 20px, 50px);
+  }
+}
+.content__scale-3d {
+  background-color: #4e173e;
+  &:hover {
+    transform: scale3d(1.2, 1.5, 0.5);
+  }
+}
+
+.content__rotate-3d {
+  background-color: #22333b;
+  &:hover {
+    transform: rotate3d(1, 1, 1, 180deg);
+  }
+}
+.content__matrix-3d {
+  background-color: #223b29;
+  &:hover {
+    transform: matrix3d();
+  }
+}
+.content__t-r-3d {
+  background-color: #3b2722;
+  &:hover {
+    transform: translate3d(20px, 20px, 50px) rotate3d(1, 1, 1, 45deg);
+  }
+}
+
+.wraper-3d_s {
+  transform-style: preserve-3d;
+  &:hover {
+    .content__transform-style {
+      transform-origin: center;
+      transform: perspective(400px) rotateX(45deg);
+    }
+  }
+}
+
+.content__transform-style {
+  background-color: #3d3039;
+  &:hover {
+  }
+}
+
+.flip {
+}
+
+.flip__body {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  transition: all 1s ease 0s;
+  transform-style: preserve-3d;
+}
+.flip__front,
+.flip__back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flip__front {
+  z-index: 2;
+  transform: rotateY(0deg);
+  background-color: #b34646;
+
+  backface-visibility: hidden;
+}
+.flip__back {
+  z-index: 1;
+  transform: rotateY(-180deg);
+  background-color: rgb(87, 77, 218);
+}
+
+.flip:hover .flip__body {
+  transform: rotateY(-180deg);
 }
